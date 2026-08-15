@@ -1,8 +1,10 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+
+import fondoVal from "../assets/Val.jpg";
 ---
 
 <!doctype html>
@@ -12,38 +14,64 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 	</head>
 	<body>
 		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
+		<main
+			class="fondo_inicio"
+			style={`background-image: url(${fondoVal.src});`}
+		>
+			<div class="hero-content">
+				<h1>Val <br /> Aguilera</h1>
+			</div>
 		</main>
 		<Footer />
 	</body>
 </html>
+<style is:global>
+	/* Asegúrate de que el body no tenga márgenes predeterminados */
+	body {
+		margin: 0;
+		padding: 0;
+		width: 100vw;
+		height: 100vh; /* Altura completa de la ventana del navegador */
+		overflow-x: hidden; /* Evita barras de desplazamiento si es necesario */
+	}
+
+	.fondo_inicio {
+		background-image: url("../assets/Val.jpg");
+		background-size: cover; /* Cubre todo el div sin deformarse */
+		background-position: center;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100%;
+
+		/* Opcional: Centrar el contenido dentro de .fondo_inicio */
+		display: flex;
+		flex-direction: column;
+		justify-content: center; /* Centrado vertical */
+		align-items: center; /* Centrado horizontal */
+	}
+
+	h1 {
+		color: white;
+		font-size: 4rem;
+		text-align: left;
+		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+		/* margin: 0; */
+		position: absolute;
+		right: 15%;
+		top: 47%;
+	}
+	@media (orientation: portrait) {
+		.fondo_inicio {
+			justify-content: center; /* Centra el texto en pantallas pequeñas */
+			padding: 2rem 1.2rem; /* Reduce el espacio en los laterales */
+			text-align: center;
+		}
+
+		h1 {
+			width: 200px;
+
+			right: 20%;
+			font-size: 3rem;
+		}
+	}
+</style>
