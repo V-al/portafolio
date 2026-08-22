@@ -6,7 +6,12 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	// 1. Dominio de GitHub Pages (usa .github.io, NO github.com)
+	site: 'https://V-al.github.io',
+
+	// 2. Nombre exacto de tu repositorio con diagonales
+	base: '/portafolio',
+
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
