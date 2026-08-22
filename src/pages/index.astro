@@ -19,47 +19,80 @@ import fondoVal from "../assets/Val.jpg";
 			style={`background-image: url(${fondoVal.src});`}
 		>
 			<div class="hero-content">
-				<h1>Val <br /> Aguilera</h1>
+				<h1 id="hero-title">Val <br /> Aguilera</h1>
 			</div>
+			<div class="text-main"></div>
 		</main>
 		<Footer />
+		<script>
+			function setupScrollEffect() {
+				const heroTitle = document.getElementById("hero-title");
+				if (!heroTitle) return;
+
+				window.addEventListener("scroll", () => {
+					// Si se baja más de 120px de scroll, oculta el h1
+					if (window.scrollY > 70) {
+						heroTitle.classList.add("hidden");
+					} else {
+						heroTitle.classList.remove("hidden");
+					}
+				});
+			}
+
+			setupScrollEffect();
+			document.addEventListener("astro:after-swap", setupScrollEffect);
+		</script>
 	</body>
 </html>
 <style is:global>
-	/* Asegúrate de que el body no tenga márgenes predeterminados */
 	body {
 		margin: 0;
 		padding: 0;
 		width: 100vw;
-		height: 100vh; /* Altura completa de la ventana del navegador */
-		overflow-x: hidden; /* Evita barras de desplazamiento si es necesario */
+		height: 100vh;
+		background-color: #0c0d21;
+		overflow-x: hidden;
 	}
 
 	.fondo_inicio {
-		background-image: url("../assets/Val.jpg");
-		background-size: cover; /* Cubre todo el div sin deformarse */
+		background-image: url(/src/assets/Val.jpg);
+		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
 		width: 100%;
+		position: relative;
+		top: -11%;
 		height: 100%;
-
-		/* Opcional: Centrar el contenido dentro de .fondo_inicio */
 		display: flex;
 		flex-direction: column;
-		justify-content: center; /* Centrado vertical */
-		align-items: center; /* Centrado horizontal */
+		justify-content: center;
+		align-items: center;
 	}
 
 	h1 {
 		color: white;
+		font-family: "Unbounded", sans-serif;
 		font-size: 4rem;
 		text-align: left;
 		text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 		/* margin: 0; */
-		position: absolute;
+		position: fixed;
 		right: 15%;
 		top: 47%;
+		/* Transición añadida */
+		opacity: 1;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
 	}
+	.text-main {
+		color: #fff;
+	}
+	h1.hidden {
+		opacity: 0;
+		pointer-events: none;
+	}
+
 	@media (orientation: portrait) {
 		.fondo_inicio {
 			justify-content: center; /* Centra el texto en pantallas pequeñas */
@@ -69,9 +102,8 @@ import fondoVal from "../assets/Val.jpg";
 
 		h1 {
 			width: 200px;
-
 			right: 20%;
-			font-size: 3rem;
+			font-size: 2.5rem;
 		}
 	}
 </style>
